@@ -1,0 +1,19 @@
+import React from "react";
+import { Link } from "react-router";
+
+function Header() {
+    return (
+        <header className="Header">
+        <nav>
+            <Link className="nav-link" to="/">
+            Home
+            </Link>
+            <Link className="nav-link" to="/article/:article_id">
+            Article
+            </Link>
+        </nav>
+        </header>
+    );
+}
+
+export default Header;

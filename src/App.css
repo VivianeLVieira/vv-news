@@ -1,4 +1,4 @@
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -39,4 +39,30 @@
 
 .read-the-docs {
   color: #888;
+} */
+
+header .nav-link{
+  margin: 8px;
+  display: inline-block;
+}
+
+li.article {
+  text-decoration: none;
+  display: inline-block;
+  border: solid 1px white;
+  padding: 16px;
+  margin: 8px;
+  width: 20%;
+}
+
+li.article .article-image {
+  display: block;
+  max-height: 100px;
+  margin: 0 auto;
+}
+
+footer {
+  margin: 0 auto;
+  padding: 0.5rem;
+  text-align: center;
 }
