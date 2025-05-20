@@ -61,6 +61,29 @@ li.article .article-image {
   margin: 0 auto;
 }
 
+section.article-detailed {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+section.article-detailed .article-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: scale-down;
+  padding: 0.5rem;
+}
+
+section.article-detailed .article-heading {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+section.article-detailed .article-title {
+  margin: 4px 0;
+}
+
 footer {
   margin: 0 auto;
   padding: 0.5rem;
