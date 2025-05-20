@@ -84,6 +84,38 @@ section.article-detailed .article-title {
   margin: 4px 0;
 }
 
+section.article-detailed .article-author {
+  font-weight: bold;
+}
+
+.comments-title {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.comment-section {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.comment-list {
+  margin: auto;
+}
+
+li.comment {
+  background-color: #edecea;
+  padding: 5px;
+  display: block;
+  margin: 0 auto;
+  border: solid 1px black;
+}
+
+li.comment .comment-author{
+  text-align: right;
+  font-weight: bold;
+}
+
 footer {
   margin: 0 auto;
   padding: 0.5rem;

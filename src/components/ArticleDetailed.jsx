@@ -32,7 +32,7 @@ function ArticleDetailed() {
     }
 
     if (!article) {
-        return (<>Not article found</>)
+        return (<>No article found</>)
     }
 
     return (
@@ -42,7 +42,7 @@ function ArticleDetailed() {
             )}
             <div className="article-heading">
                 <h1 className="article-title">{article.title}</h1>
-                <span className="article-author">Authored by {article.author}</span>
+                <p>Authored by <span className="article-author">{article.author}</span></p>
             </div>
             {article.body.split("\n").map(paragraph => {
                 return (
