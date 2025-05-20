@@ -1,14 +1,17 @@
 import React from "react";
+import { Link } from "react-router";
 
 function Article({ article }) {
-    if (!article) return (<></>)
-
     return (
         <li className="article">
             {article.article_img_url && (
             <img className="article-image" src={article.article_img_url} alt="article-image" />
             )}
-            <span className="article-title">{article.title}</span>
+            <nav> 
+                <Link className="nav-link" to={`article/${article.article_id}`} alt={article.title}>
+                    <span className="article-title">{article.title} </span>
+                </Link>
+            </nav>
         </li>
     )
 }

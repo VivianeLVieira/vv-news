@@ -15,4 +15,11 @@ const getArticles = () => {
         })
 }
 
-export { getArticles }
+const getArticle = (article_id) => {
+    return vvNewsApi.get(`/articles/${article_id}`)
+        .then((response)=> {
+            return response.data.article
+        })
+}
+
+export { getArticles, getArticle }

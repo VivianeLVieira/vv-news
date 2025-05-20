@@ -7,11 +7,11 @@ function Home() {
       <>
         <Header />
         <h1>VV-News</h1>
-        <h2>Check the lastest news</h2>
+        <h2>Check the latest news</h2>
         <ArticlesContent />
         <Footer />
       </>
-    );
+    )
   }
   
   export default Home;
