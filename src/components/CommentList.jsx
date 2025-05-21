@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react"
 import { useParams } from "react-router";
 import { AccountContext } from "../context/Account";
-import { getComments, postNewComment } from "../utils/api"
+import { getComments, postNewComment, deleteComment } from "../utils/api"
 import Error from "./Error"
 import CommentCard from "./CommentCard"
 
@@ -58,6 +58,18 @@ function CommentList() {
         }
     }
 
+    function removeComment(comment_id){
+        deleteComment(comment_id)
+            .then(() => {
+                setCommentList(() => {
+                    return commentList.filter( comment => comment.comment_id !== comment_id)
+                })
+            })
+            .catch(()=>{
+                setError(true)
+            })
+    }
+
     if(error) {
         return <Error error ={error} />
     }
@@ -90,7 +102,7 @@ function CommentList() {
             <section className="comment-list">
                 {commentList.map((comment)=>{
                     return (
-                        <CommentCard  key={comment.comment_id} comment={comment}/>
+                        <CommentCard  key={comment.comment_id} comment={comment} removeComment={removeComment}/>
                     )
                 })}
             </section>
