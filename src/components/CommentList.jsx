@@ -1,20 +1,26 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { useParams } from "react-router";
-
-import { getComments } from "../utils/api"
+import { AccountContext } from "../context/Account";
+import { getComments, postNewComment } from "../utils/api"
 import Error from "./Error"
 import CommentCard from "./CommentCard"
 
 
 function CommentList() {
+    const { loggedUser } = useContext(AccountContext)
     const [commentList, setCommentList] = useState([]) 
+    const [newComments, setNewComments] = useState(0)
+    const [newCommentText, setNewCommentText] = useState("")
+    const [hasCommented, setHasCommented] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
 
     const { article_id } = useParams()
 
     useEffect(() => {
-        setIsLoading(true)
+        if (!commentList.length) {
+            setIsLoading(true)
+        }
         getComments(article_id)
             .then((commentsFromApi) => {
                 setCommentList(commentsFromApi)
@@ -29,7 +35,28 @@ function CommentList() {
             .finally(() => {
                 setIsLoading(false)
             })
-    }, [])
+    }, [newComments])
+
+    function onNewCommentFieldChange(event) {
+        setNewCommentText(event.target.value)
+    }
+
+    function handleSubmit(event){
+        event.preventDefault()
+
+        if(newCommentText) {
+            postNewComment(article_id, loggedUser, newCommentText)
+                .then(() => {
+                    setNewComments(newComments + 1)
+                    setNewCommentText("");
+                    setHasCommented(true)
+                })
+                .catch(()=>{
+                    setError(true)
+                    setHasCommented(false)
+                })
+        }
+    }
 
     if(error) {
         return <Error error ={error} />
@@ -44,14 +71,29 @@ function CommentList() {
 
     return (
         <section className="comment-section">
-        <h2 className="comments-title">Comments</h2>
-        <section className="comment-list">
-            {commentList.map((comment)=>{
-                return (
-                    <CommentCard  key={comment.comment_id} comment={comment}/>
-                )
-            })}
-        </section>
+            <h2 className="comments-title">Comments</h2>
+            <section>
+                {loggedUser &&
+                    <form className="comment-form" onSubmit={handleSubmit}>
+                        <textarea
+                            value={newCommentText}
+                            onChange={onNewCommentFieldChange}
+                            className="comment-from-text"
+                            placeholder="Add your comment here!"
+                            rows={4}>    
+                        </textarea>
+                        <input type="submit" id="comment-button" value="Submit"></input>
+                    </form>
+                }
+                {hasCommented ? <p>Your comment was added! </p>: null}
+            </section>
+            <section className="comment-list">
+                {commentList.map((comment)=>{
+                    return (
+                        <CommentCard  key={comment.comment_id} comment={comment}/>
+                    )
+                })}
+            </section>
         </section>
     )
 }

@@ -41,4 +41,8 @@ const patchArticle = (article_id, voteNumber) => {
     return vvNewsApi.patch(`/articles/${article_id}`, {inc_votes: voteNumber})
 }
 
-export { getArticles, getArticle, getComments, getUsers, patchArticle }
+const postNewComment = (article_id, username, body) => {
+    return vvNewsApi.post(`/articles/${article_id}/comments`, { username: username, body: body })
+}
+
+export { getArticles, getArticle, getComments, getUsers, patchArticle, postNewComment }
