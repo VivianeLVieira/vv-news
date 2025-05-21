@@ -39,10 +39,6 @@ const getUsers = () => {
 
 const patchArticle = (article_id, voteNumber) => {
     return vvNewsApi.patch(`/articles/${article_id}`, {inc_votes: voteNumber})
-        // .then((response)=> {
-        //     console.log(response.data.article.votes, "my response")
-        //     // return response.data.article.votes
-        // })
 }
 
 export { getArticles, getArticle, getComments, getUsers, patchArticle }

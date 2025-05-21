@@ -1,5 +1,4 @@
 function Error ({error}) {
-    console.error(error)
     return (
         <section className="display-error">
             <h1>{error.response.status}</h1>
