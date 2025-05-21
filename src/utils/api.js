@@ -44,4 +44,8 @@ const postNewComment = (article_id, username, body) => {
     return vvNewsApi.post(`/articles/${article_id}/comments`, { username: username, body: body })
 }
 
-export { getArticles, getArticle, getComments, getUsers, patchArticle, postNewComment }
+const deleteComment = (comment_id) => {
+    return vvNewsApi.delete(`/comments/${comment_id}`)
+}
+
+export { getArticles, getArticle, getComments, getUsers, patchArticle, postNewComment, deleteComment }
