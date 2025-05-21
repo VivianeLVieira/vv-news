@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ArticlesContent from "../components/ArticlesContent";
 
+
 function Home() {
     return (
       <>

@@ -18,6 +18,7 @@ const getArticles = () => {
 const getArticle = (article_id) => {
     return vvNewsApi.get(`/articles/${article_id}`)
         .then((response)=> {
+            console.log(response.data.article)
             return response.data.article
         })
 }
@@ -29,4 +30,19 @@ const getComments = (article_id) => {
         })
 }
 
-export { getArticles, getArticle, getComments }
+const getUsers = () => {
+    return vvNewsApi.get(`/users`)
+        .then((response)=> {
+            return response.data.users
+        })
+}
+
+const patchArticle = (article_id, voteNumber) => {
+    return vvNewsApi.patch(`/articles/${article_id}`, {inc_votes: voteNumber})
+        // .then((response)=> {
+        //     console.log(response.data.article.votes, "my response")
+        //     // return response.data.article.votes
+        // })
+}
+
+export { getArticles, getArticle, getComments, getUsers, patchArticle }

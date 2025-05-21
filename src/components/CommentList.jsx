@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router";
 
-import { getComments } from "../api"
+import { getComments } from "../utils/api"
 import Error from "./Error"
 import CommentCard from "./CommentCard"
 
@@ -18,10 +18,16 @@ function CommentList() {
         getComments(article_id)
             .then((commentsFromApi) => {
                 setCommentList(commentsFromApi)
-                setIsLoading(false)
             })
             .catch((err) => {
-                setError(err)
+                if(err.response.status ===404){
+                    setCommentList([])
+                } else {
+                    setError(err)
+                }
+            })
+            .finally(() => {
+                setIsLoading(false)
             })
     }, [])
 

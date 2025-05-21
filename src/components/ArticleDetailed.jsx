@@ -1,15 +1,19 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router";
 
-import { getArticle } from "../api";
+import { AccountContext } from "../context/Account";
+
+import { getArticle, patchArticle } from "../utils/api";
 import Error from "./Error";
 
+
 function ArticleDetailed() {
+    const { loggedUser } = useContext(AccountContext)
     const [article, setArticle] = useState(null) 
+    const [hasVoted, setHasVoted] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
-
     const { article_id } = useParams()
 
     useEffect(() => {
@@ -17,12 +21,47 @@ function ArticleDetailed() {
         getArticle(article_id)
             .then((articleFromApi) => {
                 setArticle(articleFromApi)
-                setIsLoading(false)
             })
             .catch((err) => {
                 setError(err)
             })
+            .finally(() => {
+                setIsLoading(false)
+            })
     }, [])
+
+    
+    function handleClickOnUpVote(){
+        if(!hasVoted) {
+            patchArticle(article_id, 1)
+                .then(() => {
+                    setArticle({
+                        ...article,
+                        votes: article.votes + 1
+                    })
+                    setHasVoted(true)
+                })
+                .catch(() => {
+                    setHasVoted(false)
+                })
+        }
+    }
+
+    function handleClickOnDownVote(){
+        if(!hasVoted) {
+            patchArticle(article_id, -1)
+                .then(() => {
+                    setArticle({
+                        ...article,
+                        votes: article.votes -1
+                    })
+                    setHasVoted(true)
+                })
+                .catch(() => {
+                    setHasVoted(false)
+                })
+        }
+    }
 
     if(error) {
         return <Error error ={error} />
@@ -51,6 +90,9 @@ function ArticleDetailed() {
             })}
             <p className="article-topic">Topic: {article.topic} </p>
             <p className="article-votes">Votes: {article.votes}</p>
+            {hasVoted ? <p>Well done voting! </p>: null}
+            <button onClick={handleClickOnUpVote} disabled={!loggedUser || hasVoted }>Upvote</button>
+            <button onClick={handleClickOnDownVote} disabled={!loggedUser || hasVoted }>DownVote</button>
         </section>
     )
 }

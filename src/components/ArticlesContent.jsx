@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-import { getArticles } from "../api"
+import { getArticles } from "../utils/api"
 import Error from "./Error"
 import ArticlePreview from "./ArticlePreview"
 
