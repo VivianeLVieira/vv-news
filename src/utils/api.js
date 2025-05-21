@@ -18,7 +18,6 @@ const getArticles = () => {
 const getArticle = (article_id) => {
     return vvNewsApi.get(`/articles/${article_id}`)
         .then((response)=> {
-            console.log(response.data.article)
             return response.data.article
         })
 }
