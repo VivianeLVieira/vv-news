@@ -23,11 +23,8 @@ function CommentList({ article_id }) {
                 setCommentList(commentsFromApi)
             })
             .catch((err) => {
-                if(err.response.status ===404){
-                    setCommentList([])
-                } else {
-                    setError(err)
-                }
+                setCommentList([])
+                setError(err)
             })
             .finally(() => {
                 setIsLoading(false)
@@ -67,43 +64,52 @@ function CommentList({ article_id }) {
             })
     }
 
-    if(error) {
+    if(error && error.response.status !== 404) {
         return <Error error ={error} />
     }
+
     if(isLoading) {
         return <p>Loading...</p>
     }
 
-    if (!commentList || commentList.length === 0) {
-        return (<p>0 comments</p>)
-    }
+    // if (!commentList || commentList.length === 0) {
+    //     return (<p>0 comments</p>)
+    // }
 
     return (
-        <section className="comment-section">
-            <h2 className="comments-title">Comments {commentList.length}</h2>
-            <section>
-                {loggedUser &&
-                    <form className="comment-form" onSubmit={handleSubmit}>
-                        <textarea
-                            value={newCommentText}
-                            onChange={onNewCommentFieldChange}
-                            className="comment-from-text"
-                            placeholder="Add your comment here!"
-                            rows={4}>    
-                        </textarea>
-                        <input type="submit" id="comment-button" value="Submit"></input>
-                    </form>
+        <div>
+            <section className="comment-section">
+                {commentList.length > 0 ?
+                    (<h2 className="comments-title">Comments {commentList.length}</h2>) :
+                    (<p>0 comments</p>)
                 }
-                {hasCommented ? <p>Your comment was added! </p>: null}
+
+                <section>
+                    {loggedUser &&
+                        <form className="comment-form" onSubmit={handleSubmit}>
+                            <textarea
+                                value={newCommentText}
+                                onChange={onNewCommentFieldChange}
+                                className="comment-from-text"
+                                placeholder="Add your comment here!"
+                                required
+                                rows={4}>    
+                            </textarea>
+                            <input type="submit" id="comment-button" value="Submit"></input>
+                        </form>
+                    }
+                    {hasCommented ? <p>Your comment was added! </p>: null}
+                </section>
+
+                <section className="comment-list">
+                    {commentList.map((comment)=>{
+                        return (
+                            <CommentCard  key={comment.comment_id} comment={comment} removeComment={removeComment}/>
+                        )
+                    })}
+                </section>
             </section>
-            <section className="comment-list">
-                {commentList.map((comment)=>{
-                    return (
-                        <CommentCard  key={comment.comment_id} comment={comment} removeComment={removeComment}/>
-                    )
-                })}
-            </section>
-        </section>
+        </div>
     )
 }
 

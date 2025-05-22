@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { AccountContext } from "../context/Account";
 import { getArticle, patchArticle } from "../utils/api";
 import Error from "./Error";
+import CommentList from "./CommentList";
 
 
 function ArticleDetailed({ article_id }) {
@@ -71,25 +72,34 @@ function ArticleDetailed({ article_id }) {
     }
 
     return (
-        <section className="article-detailed">
-            {article.article_img_url && (
-            <img className="article-image" src={article.article_img_url} alt="article-image" />
-            )}
-            <div className="article-heading">
-                <h1 className="article-title">{article.title}</h1>
-                <p>Authored by <span className="article-author">{article.author}</span></p>
-            </div>
-            {article.body.split("\n").map(paragraph => {
-                return (
-                    <p key="article-body" className="article-body">{paragraph}</p>
-                )
-            })}
-            <p className="article-topic">Topic: {article.topic} </p>
-            <p className="article-votes">Votes: {article.votes}</p>
-            {hasVoted ? <p>Well done voting! </p>: null}
-            <button onClick={handleClickOnUpVote} disabled={!loggedUser || hasVoted }>Upvote</button>
-            <button onClick={handleClickOnDownVote} disabled={!loggedUser || hasVoted }>DownVote</button>
-        </section>
+        <>
+            <section className="article-detailed">
+                {article.article_img_url && (
+                    <img className="article-image" src={article.article_img_url} alt="article-image" />
+                )}
+
+                <div className="article-heading">
+                    <h1 className="article-title">{article.title}</h1>
+                    <p>Authored by <span className="article-author">{article.author}</span></p>
+                </div>
+
+                {article.body.split("\n").map((paragraph, index) => {
+                    return (
+                        <p key={index} className="article-body">{paragraph}</p>
+                    )
+                })}
+
+                <p className="article-topic">Topic: {article.topic} </p>
+                <p className="article-votes">Votes: {article.votes}</p>
+
+                {hasVoted ? <p>Well done voting! </p>: null}
+
+                <button onClick={handleClickOnUpVote} disabled={!loggedUser || hasVoted }>Upvote</button>
+                <button onClick={handleClickOnDownVote} disabled={!loggedUser || hasVoted }>DownVote</button>
+            </section>
+
+            {article && <CommentList article_id={article_id}/>}
+        </>
     )
 }
 
