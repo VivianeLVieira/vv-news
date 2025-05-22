@@ -5,6 +5,7 @@ import { AccountProvider } from './context/Account';
 import Home from './pages/Home'; 
 import ArticlePage from './pages/ArticlePage'
 import SignInPage from './pages/SignInPage';
+import Header from './components/Header';
 
 
 function App() {
@@ -16,8 +17,9 @@ function App() {
       <Route path="/article/:article_id" element={<ArticlePage />}/>
       <Route path="/login" element={<SignInPage />}/>
       <Route path="*" element={<>
-        <p>404: Page not found </p>
-        <p>Sorry, we couldn't find that page</p>
+          <Header />
+          <p>404: Page not found </p>
+          <p>Sorry, we couldn't find that page</p>
         </>}/>
     </Routes>
     </AccountProvider>
