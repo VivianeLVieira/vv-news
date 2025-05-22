@@ -40,11 +40,52 @@
 .read-the-docs {
   color: #888;
 } */
-
-header .nav-link{
-  margin: 8px;
-  display: inline-block;
+.Header {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
 }
+
+.article-list > h1{
+  font-weight: bold;
+  text-align: center;
+}
+
+.Header .logo{
+  margin-right: 16px;
+  font-size: 2.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  color: inherit;
+}
+
+.Header .nav-link{
+  margin: 8px;
+  flex: 1;
+  font-size: 1.3rem;
+
+}
+
+.home-content {
+  display: flex;
+}
+
+.home-content .topic-list {
+  flex: 0.5;
+  /* background-color: red; */
+  margin-right: 8px;
+  /* border: 1px solid #333; */
+  padding: 8px;
+  font-display: #333;
+}
+
+.home-content .article-list {
+  flex: 3;
+  /* background-color: rgb(210, 207, 61); */
+  padding: 8px;
+}
+
+
 
 li.article {
   text-decoration: none;

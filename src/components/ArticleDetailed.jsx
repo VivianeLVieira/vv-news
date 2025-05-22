@@ -1,20 +1,16 @@
 import React from "react";
 import { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router";
-
 import { AccountContext } from "../context/Account";
-
 import { getArticle, patchArticle } from "../utils/api";
 import Error from "./Error";
 
 
-function ArticleDetailed() {
+function ArticleDetailed({ article_id }) {
     const { loggedUser } = useContext(AccountContext)
     const [article, setArticle] = useState(null) 
     const [hasVoted, setHasVoted] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
-    const { article_id } = useParams()
 
     useEffect(() => {
         setIsLoading(true)

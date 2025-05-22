@@ -4,10 +4,11 @@ const vvNewsApi = axios.create({
     baseURL: "https://seeding-vv-news.onrender.com/api",
 })
 
-const getArticles = () => {
+const getArticles = (topic) => {
     return vvNewsApi.get("/articles", {
         params: {
-            order: "desc"
+            order: "desc",
+            topic: topic
         }, 
     })
         .then((response)=> {
@@ -36,6 +37,13 @@ const getUsers = () => {
         })
 }
 
+const getTopics = () => {
+    return vvNewsApi.get(`/topics`)
+        .then((response)=> {
+            return response.data.topics
+        })
+}
+
 const patchArticle = (article_id, voteNumber) => {
     return vvNewsApi.patch(`/articles/${article_id}`, {inc_votes: voteNumber})
 }
@@ -48,4 +56,4 @@ const deleteComment = (comment_id) => {
     return vvNewsApi.delete(`/comments/${comment_id}`)
 }
 
-export { getArticles, getArticle, getComments, getUsers, patchArticle, postNewComment, deleteComment }
+export { getArticles, getArticle, getComments, getUsers, getTopics, patchArticle, postNewComment, deleteComment }

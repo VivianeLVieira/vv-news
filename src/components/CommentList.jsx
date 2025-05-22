@@ -1,12 +1,11 @@
 import { useState, useEffect, useContext } from "react"
-import { useParams } from "react-router";
 import { AccountContext } from "../context/Account";
 import { getComments, postNewComment, deleteComment } from "../utils/api"
 import Error from "./Error"
 import CommentCard from "./CommentCard"
 
 
-function CommentList() {
+function CommentList({ article_id }) {
     const { loggedUser } = useContext(AccountContext)
     const [commentList, setCommentList] = useState([]) 
     const [newComments, setNewComments] = useState(0)
@@ -14,8 +13,6 @@ function CommentList() {
     const [hasCommented, setHasCommented] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
-
-    const { article_id } = useParams()
 
     useEffect(() => {
         if (!commentList.length) {
@@ -78,12 +75,12 @@ function CommentList() {
     }
 
     if (!commentList || commentList.length === 0) {
-        return (<p>No comments</p>)
+        return (<p>0 comments</p>)
     }
 
     return (
         <section className="comment-section">
-            <h2 className="comments-title">Comments</h2>
+            <h2 className="comments-title">Comments {commentList.length}</h2>
             <section>
                 {loggedUser &&
                     <form className="comment-form" onSubmit={handleSubmit}>

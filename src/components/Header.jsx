@@ -7,20 +7,20 @@ function Header() {
     const { loggedUser } = useContext(AccountContext)
     return (
         <header className="Header">
+            <Link className="logo" to="/">
+                VV-News
+            </Link>
             <nav>
-                <Link className="nav-link" to="/">
+                <Link className="nav-link" to="/home">
                     Home
                 </Link>
-                <Link className="nav-link" to="/topics">
-                    Topic
-                </Link>
-                {loggedUser &&
-                    <Link className="nav-link" to="/user/:user/articles">
+                {/* {loggedUser &&
+                    <Link className="nav-link" to={`/user/${loggedUser}/articles`}>
                         Your articles
                     </Link>
-                }
+                } */}
                 <Link className="nav-link" to="/login">
-                    {loggedUser ? `${loggedUser}`: "Sign in"}
+                    {loggedUser ? `Welcome, ${loggedUser}`: "Sign in"}
                 </Link>
             </nav>
         </header>
