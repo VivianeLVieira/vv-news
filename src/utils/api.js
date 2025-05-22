@@ -4,11 +4,12 @@ const vvNewsApi = axios.create({
     baseURL: "https://seeding-vv-news.onrender.com/api",
 })
 
-const getArticles = (topic) => {
+const getArticles = (topic, orderBy, sortBy) => {
     return vvNewsApi.get("/articles", {
         params: {
-            order: "desc",
-            topic: topic
+            order: orderBy || "desc",
+            topic: topic,
+            sort_by: sortBy
         }, 
     })
         .then((response)=> {
