@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 export const AccountContext = createContext(null)
 
 export const AccountProvider = ({ children }) => {
-    const [loggedUser, setLoggedUser] = useState('tickle122')
+    const [loggedUser, setLoggedUser] = useState(null)
 
     return (
         <AccountContext.Provider
