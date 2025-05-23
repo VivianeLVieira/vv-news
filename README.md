@@ -8,7 +8,7 @@ The frontend fetchs data from [Seeding-vv-news](https://github.com/VivianeLVieir
 
 #### Follow the steps below to test the project by creating your version!
 
-1. Clone the project to you local environment and enter the main directory
+1. Clone the project to your local environment and enter the main directory
 
     •	Visit the GitHub repository: https://github.com/VivianeLVieira/vv-news
 
@@ -26,7 +26,7 @@ The frontend fetchs data from [Seeding-vv-news](https://github.com/VivianeLVieir
         
         npm run dev -- --port 5173
 
-4. Enter "o" in the terminal to open view the website in the browser or access: 
+4. Enter "o" in the terminal to open the website in the browser or access: 
 
         http://localhost:5173/
 
