@@ -1,12 +1,41 @@
-# React + Vite
+# VV-News 
+by VivianeLVieira
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a "News" website project built with React + Vite, that incorporates pure CSS and Bootstrap to explore them as much as possible...
 
-Currently, two official plugins are available:
+The frontend fetchs data from [Seeding-vv-news](https://github.com/VivianeLVieira/Seeding-VV-News) API project 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+#### Follow the steps below to test the project by creating your version!
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clone the project to you local environment and enter the main directory
+
+    •	Visit the GitHub repository: https://github.com/VivianeLVieira/vv-news
+
+    •	Click in the green "code" button-> select "Local" tab and copy/save the HTTPS link (repository-url)
+    
+2. Install dependencies 
+
+        npm install
+
+3. Run development mode
+
+        npm run dev 
+
+        or 
+        
+        npm run dev -- --port 5173
+
+4. Enter "o" in the terminal to open view the website in the browser or access: 
+
+        http://localhost:5173/
+
+5. Requirements
+
+To run this project, you must have the following software version or later installed:
+
+•	Node.js = v22.14.0
+
+
+#### This portfolio project was created as part of a Digital Skills Bootcamp in Software Engineering provided by [Northcoders](https://northcoders.com/).
+
