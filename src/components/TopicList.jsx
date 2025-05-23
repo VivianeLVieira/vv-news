@@ -18,7 +18,7 @@ function TopicList(){
                 setTopicList(topicsFromApi)
             })
             .catch((err) => {
-                    setError(err)
+                setError(err)
             })
             .finally(() => {
                 setIsLoading(false)

@@ -4,11 +4,9 @@ import Footer from "../components/Footer";
 import ArticlesContent from "../components/ArticlesContent";
 import TopicList from "../components/TopicList";
 
-
-function Home() {
+function HomePage() {
   const [searchParams] = useSearchParams()
   const topic = searchParams.get("topic")
-  console.log(topic)
 
   return (
     <>
@@ -27,6 +25,5 @@ function Home() {
     </>
   )
 }
-  
-export default Home;
-  
+
+export default HomePage;
