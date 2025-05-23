@@ -4,7 +4,7 @@ import { AccountContext } from "../context/Account";
 function CommentCard({ comment, removeComment }) {
     const { loggedUser } = useContext(AccountContext)
 
-    function removeHandle() {
+    function HandleRemove() {
         removeComment(comment.comment_id)
     }
 
@@ -14,7 +14,7 @@ function CommentCard({ comment, removeComment }) {
             <p className="comment-author">by {comment.author}</p>
             <p className="comment-votes">Votes: {comment.votes}</p>
             {loggedUser === comment.author &&
-                <button onClick={removeHandle}>Remove</button>
+                <button onClick={HandleRemove}>Remove</button>
             }
         </li>
     )

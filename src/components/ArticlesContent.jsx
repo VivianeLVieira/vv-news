@@ -11,7 +11,7 @@ const ArticlesContent = ({ topic }) => {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
 
-    const sortBySelectedTypeHandle = (event) => {
+    const HandleSortBySelectedType = (event) => {
         const [sort, order] = event.target.value.split(" ")
         setSortBy(sort)
         setOrderBy(order)
@@ -56,7 +56,7 @@ const ArticlesContent = ({ topic }) => {
 
     return (
         <>
-            <select value={sortBy +" "+ orderBy} onChange={sortBySelectedTypeHandle}>
+            <select value={sortBy +" "+ orderBy} onChange={HandleSortBySelectedType}>
                 <option value={""}>Sort by</option>
                 <option value="created_at desc">Newest</option>
                 <option value="created_at asc">Oldest</option>
