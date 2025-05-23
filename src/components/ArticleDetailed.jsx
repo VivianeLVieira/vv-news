@@ -94,8 +94,10 @@ function ArticleDetailed({ article_id }) {
 
                 {hasVoted ? <p>Well done voting! </p>: null}
 
-                <button onClick={handleClickOnUpVote} disabled={!loggedUser || hasVoted }>Upvote</button>
-                <button onClick={handleClickOnDownVote} disabled={!loggedUser || hasVoted }>DownVote</button>
+                <div className="btn-group" role="group" aria-label="Basic example">
+                    <button onClick={handleClickOnUpVote} className="btn btn-secondary" disabled={!loggedUser || hasVoted }>👍</button>
+                    <button onClick={handleClickOnDownVote} className="btn btn-secondary" disabled={!loggedUser || hasVoted }>👎</button>
+                </div>
             </section>
 
             {article && <CommentList article_id={article_id}/>}
