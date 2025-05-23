@@ -12,7 +12,7 @@ const ArticlesContent = ({ topic }) => {
     const [error, setError] = useState(null)
 
     const HandleSortBySelectedType = (event) => {
-        const [sort, order] = event.target.value.split(" ")
+        const [sort, order] = event.target.getAttribute('value').split(" ")
         setSortBy(sort)
         setOrderBy(order)
     }
@@ -56,22 +56,29 @@ const ArticlesContent = ({ topic }) => {
 
     return (
         <>
-            <select value={sortBy +" "+ orderBy} onChange={HandleSortBySelectedType}>
-                <option value={""}>Sort by</option>
-                <option value="created_at desc">Newest</option>
-                <option value="created_at asc">Oldest</option>
-                <option value="comment_count desc">Most commented</option>
-                <option value="comment_count asc">Least commented</option>
-                <option value="votes desc">Most popular</option>
-                <option value="votes asc">Least popular</option>
-            </select>
-            <ul>
-                {articleList.map((article)=> {
-                    return (
-                        <ArticlePreview key={ article.article_id } article={ article }/>
-                    )
-                })}
-            </ul>
+            <div className="dropdown" >
+                <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Sort by: <span id="selectedSortLabel">Newest</span>
+                </button>
+                <ul className="dropdown-menu">
+                    <li><a value="created_at desc" className="dropdown-item" onClick={HandleSortBySelectedType}>Newest</a></li>
+                    <li><a value="created_at asc" className="dropdown-item" onClick={HandleSortBySelectedType}>Oldest</a></li>
+                    <li><a value="comment_count desc" className="dropdown-item" onClick={HandleSortBySelectedType}>Most commented</a></li>
+                    <li><a value="comment_count asc" className="dropdown-item" onClick={HandleSortBySelectedType}>Least commented</a></li>
+                    <li><a value="votes desc" className="dropdown-item" onClick={HandleSortBySelectedType}>Most popular</a></li>
+                    <li><a value="votes asc" className="dropdown-item" onClick={HandleSortBySelectedType}>Least popular</a></li>
+                </ul>
+            </div>
+
+            <div className="container ">
+                <div className="row row-cols-3">
+                    {articleList.map((article)=> {
+                        return (
+                            <ArticlePreview key={ article.article_id } article={ article }/>
+                        )
+                    })}
+                </div>
+            </div>
         </>
     )
 }
