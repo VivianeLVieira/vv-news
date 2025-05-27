@@ -10,9 +10,7 @@ The frontend fetchs data from [Seeding-vv-news](https://github.com/VivianeLVieir
 
 1. Clone the project to your local environment and enter the main directory
 
-    •	Visit the GitHub repository: https://github.com/VivianeLVieira/vv-news
-
-    •	Click in the green "code" button-> select "Local" tab and copy/save the HTTPS link (repository-url)
+    •	Visit the GitHub repository to clone it: https://github.com/VivianeLVieira/vv-news
     
 2. Install dependencies 
 
